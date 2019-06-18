@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/main_bottom"
                     android:button="@drawable/main_bottom"
-                    android:text="动漫游戏"
+                    android:text="大数据"
                     android:textSize="20sp" />
 
 

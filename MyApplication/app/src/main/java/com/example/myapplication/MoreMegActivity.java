@@ -1,7 +1,10 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -9,14 +12,24 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.example.myapplication.bean.Article;
+import com.example.myapplication.bean.Query;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
@@ -62,12 +75,28 @@ public class MoreMegActivity extends AppCompatActivity {
 
     }
 
+//  重写onActivityResult()方法,接受活动返回来的数据
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode) {
+            case 1:
+                if(resultCode == RESULT_OK) {
+                    String returnData = data.getStringExtra("data_return");
+                    System.out.println(returnData);
+                    Log.d("FirstActivity", returnData);
+                }
+                break;
+            default:
+        }
+    }
+
     private void initListener() {
 
         sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final StringBuffer sb = new StringBuffer();
+
                 //判断CheckBox是否被选中
                 if (b1.isChecked()) {
                     //把被选中的文字添加到StringBuffer中
@@ -88,10 +117,6 @@ public class MoreMegActivity extends AppCompatActivity {
                 if (b5.isChecked()) {
                     //把被选中的文字添加到StringBuffer中
                     sb.append(b5.getText().toString());
-                }
-                if (b1.isChecked()) {
-                    //把被选中的文字添加到StringBuffer中
-                    sb.append(b1.getText().toString());
                 }
                 if (b6.isChecked()) {
                     //把被选中的文字添加到StringBuffer中
@@ -118,50 +143,17 @@ public class MoreMegActivity extends AppCompatActivity {
 
                 mes = sb.toString();
 
+//               活动跳转和消息传递
+                Intent intent = new Intent(MoreMegActivity.this, MainActivity.class);
+                intent.putExtra("choice",mes);
 
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            OkHttpClient client = new OkHttpClient();
-                            String path = "http://47.100.127.206:8082/ins/" + "/" + sb;
-                            final Gson gson = new Gson();
-                            Request request = new Request.Builder().url(path)//请求的url
-                                    .get().build();
+//                传数据到上一个活动,并接受返回的消息
+//                请求码用用于在之后的回调中判断数据来源
+                startActivityForResult(intent, 1);
 
-                            Call call = client.newCall(request);
-                            call.enqueue(new Callback() {
-                                @Override
-                                public void onFailure(Call call, final IOException e) {
-                                    //进行更新UI操作
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Toast.makeText(MoreMegActivity.this, "清检查网络连接！", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                                }
-
-                                @Override
-                                public void onResponse(Call call, Response response) throws IOException {
-
-
-                                    runOnUiThread(new Runnable() {
-                                        public void run() {
-
-                                            Toast.makeText(MoreMegActivity.this, "注册成功！", Toast.LENGTH_SHORT).show();
-
-
-                                        }
-                                    });
-
-                                }
-                            });
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                };
+//                传数据到下一个活动,不需要接受返回消息
+//                intent.putExtra("choice",mes);
+//                startActivity(intent);
 
 
             }
