@@ -3,6 +3,9 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,14 +29,21 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
     private TextView textView;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView=(TextView)findViewById(R.id.m);
-        textView.setText("dsfsdfsdfs");
+
+
+        initView();
         sendHttp();
+
+    }
+    private void initView() {
+        textView = (TextView) findViewById(R.id.m);
+        listView = (ListView) findViewById(R.id.list_view);
 
     }
 
@@ -127,6 +137,9 @@ public class MainActivity extends AppCompatActivity {
                             Gson gson1 = new Gson();
                             List<Article> la = gson1.fromJson(aa, new TypeToken<List<Article>>() {
                             }.getType());
+
+
+
                             for (int ff = 0; ff < la.size(); ff++) {
                                 Integer articleId = la.get(ff).getArticleId();
                                 String title = la.get(ff).getTitle();
