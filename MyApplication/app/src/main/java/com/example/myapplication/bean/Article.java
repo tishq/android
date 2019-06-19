@@ -2,6 +2,16 @@ package com.example.myapplication.bean;
 
 public class Article {
     private String title;
+    private String summary;
+    private String views;
+    private String author;
+    private String tag;
+    private String url;
+    private String date;
+    private String star;
+    private String score;
+    private Integer articleId;
+    private int imageId;
 
     public String getTitle() {
         return title;
@@ -83,15 +93,19 @@ public class Article {
         this.articleId = articleId;
     }
 
-    private String summary;
-    private String views;
-    private String author;
-    private String tag;
-    private String url;
-    private String date;
-    private String star;
-    private String score;
-    private Integer articleId;
+    public int getImageId() {
+        return imageId;
+    }
 
+    public void setImageId(int imageId) {
+        this.imageId = imageId;
+    }
 
+    public Article(String title, int imageId) {
+        this.title = title;
+        this.imageId = imageId;
+    }
+
+    public Article() {
+    }
 }

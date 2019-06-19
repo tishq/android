@@ -1,35 +1,39 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
+import com.example.myapplication.adapter.ArticleAdapter;
 import com.example.myapplication.bean.Article;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONObject;
-
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity {
-    private TextView textView;
-    private ListView listView;
+public class MainActivity extends AppCompatActivity implements ArticleAdapter.mitemonClick {
+
+    List<Article> la = new ArrayList<>();
+
+
+    private Context context;
+
+    private RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,82 +42,63 @@ public class MainActivity extends AppCompatActivity {
 
 
         initView();
-        sendHttp();
+
+        try {
+            la = sendHttp();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        ArticleAdapter adapter = new ArticleAdapter(la, context);
+        recyclerView.setAdapter(adapter);
+        adapter.setItemClickListener(this);
 
     }
+
+
     private void initView() {
-        textView = (TextView) findViewById(R.id.m);
-        listView = (ListView) findViewById(R.id.list_view);
-
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
     }
 
 
-//  点击back键后,把消息返回给上一个活动
     @Override
-    public void onBackPressed() {
-//        返回数据到上一个活动
-        Intent intent1 = new Intent();
-        intent1.putExtra("data_return","return@@@@@@@");
-        setResult(RESULT_OK,intent1);
-        finish();
+    public void onitemOnclick(View v, int position) {
+        Intent intent = new Intent(MainActivity.this, WebActivity.class);
+        intent.putExtra("url",la.get(position).getUrl());
+        MyAplication.setTest(1);
+        startActivity(intent);
+
     }
 
+    public List<Article> sendHttp() throws InterruptedException {
 
-
-    public void sendHttp() {
-
+        final CountDownLatch latch = new CountDownLatch(1);
 //       拿到上一个活动传来的数据
         Intent intent = getIntent();
         final String t = intent.getStringExtra("choice");
         System.out.println(t);
 //         final String t = "大数据";
 
-
-
-
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 try {
+
                     OkHttpClient client = new OkHttpClient();
 //                            String a = "大数据";
 //                    String path = "http://tishq.cn:5001/articles";
-                    String url = "http://tishq.cn:8401/articles?keyword="+t;
+                    String url = "http://tishq.cn:8401/articles?keyword=" + t;
+                    System.out.println(url);
 
-
-//                    利用JSONString构造json类型的string数据
-//                    JSONObject postData = new JSONObject();
-////                            String s1 = {"article_kwd":"大数据"}
-//                    String keyword = mes;
-//                    postData.put("article_kwd", keyword);
-//                    String jsonString = postData.toString();
-//                            System.out.println(jsonString + "#########");
-
-
-
-//                            利用对象构造json类型的string数据
-//                            Query query = new Query();
-//                            query.setArticle_kwd("大数据");
-//                            Gson gson = new Gson();
-//                            String json = gson.toJson(query);
-//                            System.out.println(json);
-
-//                    构造post请求的body
-//                    方式一
-//                    RequestBody body = FormBody.create(MediaType.parse("application/json; charset=utf-8"),
-//                            jsonString);
-
-//                     方式二
-//                     RequestBody body = new FormBody.Builder().add("article_kwd","大数据").build();
-
-//                    发送post请求(url不能是localhost)
-//                    Request request = new Request.Builder().url(path)//请求的url
-//                            .post(body).build();
 
 //                    发送get请求
                     Request request = new Request.Builder().url(url).get().build();
 
                     Call call = client.newCall(request);
+
+
                     call.enqueue(new Callback() {
                         @Override
                         public void onFailure(Call call, final IOException e) {
@@ -125,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
                                             Toast.LENGTH_SHORT).show();
                                 }
                             });
+//                            阻塞子线程
+                            latch.countDown();
                         }
 
                         @Override
@@ -135,47 +122,55 @@ public class MainActivity extends AppCompatActivity {
 //                            System.out.println(aa);
                             System.out.println("@@@@@@@@@@@@@@@@@@@@");
                             Gson gson1 = new Gson();
-                            List<Article> la = gson1.fromJson(aa, new TypeToken<List<Article>>() {
+                            List<Article> lat = gson1.fromJson(aa, new TypeToken<List<Article>>() {
                             }.getType());
 
-
-
-                            for (int ff = 0; ff < la.size(); ff++) {
-                                Integer articleId = la.get(ff).getArticleId();
-                                String title = la.get(ff).getTitle();
-                                String url = la.get(ff).getUrl();
-                                System.out.println(articleId);
-                                System.out.println(title);
-                                System.out.println(url);
-
+//                          把拿到的文章列表存到la
+                            for (int i = 0; i < lat.size(); i++) {
+                                la.add(lat.get(i));
                             }
 
 
-//                            解析列表中的整数
-    //                                    List<Integer> la = gson.fromJson(aa, new TypeToken<List<Integer>>() {
-    //                                    }.getType());
-    //                                    System.out.println(la.get(0));
-    //                                    if(la.get(0)==15) {
-    //                                        System.out.println(15);
-    //                                    }
                             runOnUiThread(new Runnable() {
                                 public void run() {
 
 
-                                        Toast.makeText(MainActivity.this, "注册成功！",
+                                    Toast.makeText(MainActivity.this, "注册成功！",
                                             Toast.LENGTH_SHORT).show();
 
                                 }
                             });
+//                            阻塞子线程
+                            latch.countDown();
 
                         }
                     });
                 } catch (Exception e) {
                     e.printStackTrace();
+                    latch.countDown();
                 }
             }
         };
 
         runnable.run();
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+
+        //等待子线程执行结束
+        latch.await();
+        return la;
+
     }
+
+
+    //  点击back键后,把消息返回给上一个活动
+    @Override
+    public void onBackPressed() {
+//        返回数据到上一个活动
+        Intent intent1 = new Intent();
+        intent1.putExtra("data_return", "return@@@@@@@");
+        setResult(RESULT_OK, intent1);
+        finish();
+    }
+
+
 }

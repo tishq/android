@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/main_bottom"
                     android:button="@drawable/main_bottom"
-                    android:text="炫酷科技"
+                    android:text="java"
                     android:textSize="20sp" />
 
 
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/main_bottom"
                     android:button="@drawable/main_bottom"
-                    android:text="百变简约"
+                    android:text="html"
                     android:textSize="20sp" />
 
 
@@ -137,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/main_bottom"
                     android:button="@drawable/main_bottom"
-                    android:text="动物世界"
+                    android:text="python"
                     android:textSize="20sp" />
 
 

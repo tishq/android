@@ -3,6 +3,8 @@
     package="com.example.myapplication">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!--使用网络的权限-->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".test.ListViewActivity"></activity>
+        <activity android:name=".WebActivity"></activity>
+        <activity android:name=".test.RecyclerViewActivity" />
+        <activity android:name=".test.ListViewActivity" />
         <activity android:name=".MoreMegActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

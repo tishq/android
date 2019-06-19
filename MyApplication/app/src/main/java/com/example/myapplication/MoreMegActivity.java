@@ -12,27 +12,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-import com.example.myapplication.bean.Article;
-import com.example.myapplication.bean.Query;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.List;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-
-
 //更多信息
 public class MoreMegActivity extends AppCompatActivity {
 
@@ -154,6 +133,10 @@ public class MoreMegActivity extends AppCompatActivity {
 //                传数据到下一个活动,不需要接受返回消息
 //                intent.putExtra("choice",mes);
 //                startActivity(intent);
+
+
+                Intent intent1 =new Intent(MoreMegActivity.this, com.example.myapplication.test.RecyclerViewActivity.class);
+//                startActivity(intent1);
 
 
             }
