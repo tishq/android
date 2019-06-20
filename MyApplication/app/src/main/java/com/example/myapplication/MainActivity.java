@@ -25,7 +25,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity implements ArticleAdapter.mitemonClick {
+public class MainActivity extends AppCompatActivity implements ArticleAdapter.MitemonClick {
 
     List<Article> la = new ArrayList<>();
 
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.mi
     public void onitemOnclick(View v, int position) {
         Intent intent = new Intent(MainActivity.this, WebActivity.class);
         intent.putExtra("url",la.get(position).getUrl());
+        intent.putExtra("articleId",la.get(position).getArticleId());
         MyAplication.setTest(1);
         startActivity(intent);
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 
+
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -8,19 +9,77 @@
     android:layout_height="wrap_content"
     >
 
-    <ImageView
-        android:background="@drawable/b2"
-        android:id="@+id/article_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
-    <TextView
-        android:text="eadfae"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:id="@+id/article_title"
+    <LinearLayout
+        android:background="@drawable/yuan_artile"
+        android:layout_marginTop="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <ImageView
+            android:background="@drawable/aa"
+            android:id="@+id/article_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="eadfae"
+
+                android:textSize="15dp"
+                android:id="@+id/article_title"
+
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="eadfae"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:id="@+id/article_author"
+
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+
+                android:layout_margin="5dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:text="eadfae"
+                    android:gravity="center"
+                    android:textSize="15dp"
+                    android:id="@+id/article_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="eadfae"
+                    android:gravity="center"
+                    android:textSize="15dp"
+                    android:id="@+id/article_read"
+
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
 
 </LinearLayout>

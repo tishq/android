@@ -3,13 +3,22 @@ package com.example.myapplication;
 import android.app.Application;
 
 public class MyAplication extends Application {
-    static int  test;
+    static int  TEST;
+    static int USERID = 1;
 
     public static int getTest() {
-        return test;
+        return TEST;
     }
 
     public static void setTest(int test) {
-        MyAplication.test = test;
+        MyAplication.TEST = test;
+    }
+
+    public static int getUSERID() {
+        return USERID;
+    }
+
+    public static void setUSERID(int USERID) {
+        MyAplication.USERID = USERID;
     }
 }

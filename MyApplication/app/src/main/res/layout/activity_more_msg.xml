@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -20,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="将据此推荐适合你的好友（可多选）"
+        android:text="将据此推荐适合你的文章（可多选）"
         android:textColor="#780"
         android:textSize="15sp" />
 
@@ -48,17 +49,18 @@
                     android:layout_width="80sp"
 
                     android:layout_height="80sp"
-                    android:src="@drawable/b4" />
+                    android:src="@drawable/aa" />
 
                 <CheckBox
 
                     android:id="@+id/b1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/main_bottom"
                     android:button="@drawable/main_bottom"
+                    android:gravity="center"
                     android:text="大数据"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
 
 
             </LinearLayout>
@@ -76,12 +78,13 @@
 
                 <CheckBox
                     android:id="@+id/b2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/main_bottom"
                     android:button="@drawable/main_bottom"
+                    android:gravity="center"
                     android:text="java"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
 
 
             </LinearLayout>
@@ -99,12 +102,13 @@
 
                 <CheckBox
                     android:id="@+id/b3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/main_bottom"
                     android:button="@drawable/main_bottom"
-                    android:text="html"
-                    android:textSize="20sp" />
+                    android:text="人工智能"
+                    android:gravity="center"
+                    android:textSize="16sp" />
 
 
             </LinearLayout>
@@ -116,7 +120,7 @@
 
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -133,12 +137,13 @@
 
                 <CheckBox
                     android:id="@+id/b4"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/main_bottom"
                     android:button="@drawable/main_bottom"
                     android:text="python"
-                    android:textSize="20sp" />
+                    android:gravity="center"
+                    android:textSize="16sp" />
 
 
             </LinearLayout>
@@ -156,12 +161,13 @@
 
                 <CheckBox
                     android:id="@+id/b5"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/main_bottom"
                     android:button="@drawable/main_bottom"
-                    android:text="唯美女神"
-                    android:textSize="20sp" />
+                    android:text="机器学习"
+                    android:gravity="center"
+                    android:textSize="16sp" />
 
 
             </LinearLayout>
@@ -179,12 +185,13 @@
 
                 <CheckBox
                     android:id="@+id/b6"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/main_bottom"
                     android:button="@drawable/main_bottom"
-                    android:text="黑白世界"
-                    android:textSize="20sp" />
+                    android:text="知识图谱"
+                    android:gravity="center"
+                    android:textSize="16sp" />
 
 
             </LinearLayout>
@@ -196,7 +203,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -213,12 +220,13 @@
 
                 <CheckBox
                     android:id="@+id/b7"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/main_bottom"
                     android:button="@drawable/main_bottom"
-                    android:text="运动健身"
-                    android:textSize="20sp" />
+                    android:text="区块链"
+                    android:gravity="center"
+                    android:textSize="16sp" />
 
 
             </LinearLayout>
@@ -236,12 +244,13 @@
 
                 <CheckBox
                     android:id="@+id/b8"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/main_bottom"
                     android:button="@drawable/main_bottom"
-                    android:text="唯美古风"
-                    android:textSize="20sp" />
+                    android:text="android"
+                    android:gravity="center"
+                    android:textSize="16sp" />
 
 
             </LinearLayout>
@@ -259,12 +268,13 @@
 
                 <CheckBox
                     android:id="@+id/b9"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/main_bottom"
                     android:button="@drawable/main_bottom"
-                    android:text="二次元迷"
-                    android:textSize="20sp" />
+                    android:text="架构师"
+                    android:gravity="center"
+                    android:textSize="16sp" />
 
 
             </LinearLayout>
@@ -275,9 +285,14 @@
 
     <Button
         android:id="@+id/sure"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
+        android:layout_width="280dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:textSize="18sp"
+        android:background="@drawable/yuanjiao"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+
         android:text="确定" />
 
 

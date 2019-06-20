@@ -20,7 +20,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
     private List<Article> mArticlelist;
     Context context1;
 
-    private mitemonClick mitemonClick;
+    private MitemonClick mitemonClick;
 
 
 
@@ -28,6 +28,9 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         View articleView;
         ImageView articleImage;
         TextView articleTitle;
+        TextView articleAuthor;
+        TextView articleDate;
+        TextView articleRead;
 
 
         public ViewHolder(@NonNull View view) {
@@ -35,6 +38,9 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
             articleView = view;
             articleImage = (ImageView) view.findViewById(R.id.article_image);
             articleTitle = (TextView) view.findViewById(R.id.article_title);
+            articleAuthor = (TextView) view.findViewById(R.id.article_author);
+            articleDate = (TextView) view.findViewById(R.id.article_date);
+            articleRead = (TextView) view.findViewById(R.id.article_read);
 
         }
     }
@@ -52,32 +58,6 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         final View view = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.article_item,parent,false);
         final ViewHolder holder = new ViewHolder(view);
-
-//        holder.articleView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int position = holder.getAdapterPosition();
-//                Article article = mArticlelist.get(position);
-//                Intent intent = new Intent(context1,WebActivity.class);
-//                activity.startActivity(intent);
-//
-//
-//                Toast.makeText(v.getContext(),"click"+article.getTitle(),Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-//
-//        holder.articleImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int position = holder.getAdapterPosition();
-//                Article article = mArticlelist.get(position);
-//
-//
-//
-//                Toast.makeText(v.getContext(),"click"+article.getTitle(),Toast.LENGTH_SHORT).show();
-//            }
-//        });
         return holder;
     }
 
@@ -86,6 +66,11 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         Article article = mArticlelist.get(position);
         holder.articleImage.setImageResource(article.getImageId());
         holder.articleTitle.setText(article.getTitle());
+        holder.articleAuthor.setText(article.getAuthor());
+        holder.articleDate.setText(article.getDate());
+        holder.articleRead.setText(article.getViews());
+
+
         holder.articleView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,11 +87,11 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
 
 
-    public interface mitemonClick
+    public interface MitemonClick
     {
         void onitemOnclick(View v,int position);
     }
-    public void setItemClickListener(mitemonClick mitemonClick){
+    public void setItemClickListener(MitemonClick mitemonClick){
         this.mitemonClick=mitemonClick;
     }
 

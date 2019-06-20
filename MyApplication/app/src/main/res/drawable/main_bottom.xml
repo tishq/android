@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:drawable="@color/colorAccent" android:state_checked="true"></item>
-    <item android:drawable="@color/colorPrimary"  android:state_checked="false"></item>
+    <item android:state_checked="false">
+        <shape android:shape="rectangle" >
+            <solid android:color="#e1eced" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+
+    <item android:state_checked="true" >
+        <shape android:shape="rectangle">
+            <solid android:color="#189fe2" />
+            <!--<solid android:color="#5884f4" />-->
+            <corners android:radius="10dp" />
+
+        </shape>
+    </item>
 </selector>

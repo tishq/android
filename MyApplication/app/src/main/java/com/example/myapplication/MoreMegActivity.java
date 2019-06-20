@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +37,33 @@ public class MoreMegActivity extends AppCompatActivity {
         setContentView(R.layout.activity_more_msg);
 
         initView();
-        initListener();
+
+        SharedPreferences sp =getSharedPreferences("data",MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = getSharedPreferences("data",MODE_PRIVATE).edit();
+
+        Boolean key = sp.getBoolean("key",true);
+        if(key) {
+            System.out.println("&&&&&%%%%%%%%%%%%%%%%%%%%%%%");
+
+            editor.putBoolean("key",false);
+
+            System.out.println(editor.commit());
+
+            System.out.println(sp.getBoolean("key",true));
+
+            initListener();
+
+        }
+        else {
+            Intent intent = new Intent(MoreMegActivity.this,MainActivity.class);
+            intent.putExtra("choice","大数据");
+            startActivity(intent);
+            finish();
+            System.out.println(2);
+        }
+
+
     }
 
     private void initView() {
@@ -79,39 +106,39 @@ public class MoreMegActivity extends AppCompatActivity {
                 //判断CheckBox是否被选中
                 if (b1.isChecked()) {
                     //把被选中的文字添加到StringBuffer中
-                    sb.append(b1.getText().toString());
+                    sb.append(b1.getText().toString()+" ");
                 }
                 if (b2.isChecked()) {
                     //把被选中的文字添加到StringBuffer中
-                    sb.append(b2.getText().toString());
+                    sb.append(b2.getText().toString()+" ");
                 }
                 if (b3.isChecked()) {
                     //把被选中的文字添加到StringBuffer中
-                    sb.append(b3.getText().toString());
+                    sb.append(b3.getText().toString()+" ");
                 }
                 if (b4.isChecked()) {
                     //把被选中的文字添加到StringBuffer中
-                    sb.append(b4.getText().toString());
+                    sb.append(b4.getText().toString()+" ");
                 }
                 if (b5.isChecked()) {
                     //把被选中的文字添加到StringBuffer中
-                    sb.append(b5.getText().toString());
+                    sb.append(b5.getText().toString()+" ");
                 }
                 if (b6.isChecked()) {
                     //把被选中的文字添加到StringBuffer中
-                    sb.append(b6.getText().toString());
+                    sb.append(b6.getText().toString()+" ");
                 }
                 if (b7.isChecked()) {
                     //把被选中的文字添加到StringBuffer中
-                    sb.append(b7.getText().toString());
+                    sb.append(b7.getText().toString()+" ");
                 }
                 if (b8.isChecked()) {
                     //把被选中的文字添加到StringBuffer中
-                    sb.append(b8.getText().toString());
+                    sb.append(b8.getText().toString()+" ");
                 }
                 if (b9.isChecked()) {
                     //把被选中的文字添加到StringBuffer中
-                    sb.append(b9.getText().toString());
+                    sb.append(b9.getText().toString()+" ");
                 }
 
 
@@ -129,13 +156,15 @@ public class MoreMegActivity extends AppCompatActivity {
 //                传数据到上一个活动,并接受返回的消息
 //                请求码用用于在之后的回调中判断数据来源
                 startActivityForResult(intent, 1);
+                finish();
 
 //                传数据到下一个活动,不需要接受返回消息
 //                intent.putExtra("choice",mes);
 //                startActivity(intent);
 
 
-                Intent intent1 =new Intent(MoreMegActivity.this, com.example.myapplication.test.RecyclerViewActivity.class);
+//                Intent intent1 =new Intent(MoreMegActivity.this,
+//                com.example.myapplication.test.RecyclerViewActivity.class);
 //                startActivity(intent1);
 
 
