@@ -54,10 +54,14 @@ public class MoreMegActivity extends AppCompatActivity {
 
             initListener();
 
+
+
+
+
         }
         else {
             Intent intent = new Intent(MoreMegActivity.this,MainActivity.class);
-            intent.putExtra("choice","大数据");
+            intent.putExtra("choice",sp.getString("keyword","大数据"));
             startActivity(intent);
             finish();
             System.out.println(2);
@@ -147,7 +151,17 @@ public class MoreMegActivity extends AppCompatActivity {
 
                 Toast.makeText(MoreMegActivity.this, sb.toString(), Toast.LENGTH_SHORT).show();
 
+
+//如果什么都没选,默认推荐大数据
                 mes = sb.toString();
+                if(mes.isEmpty()) {
+                    mes = "大数据";
+                }
+
+
+                SharedPreferences.Editor editor = getSharedPreferences("data",MODE_PRIVATE).edit();
+                editor.putString("keyword",mes);
+                System.out.println(editor.commit());
 
 //               活动跳转和消息传递
                 Intent intent = new Intent(MoreMegActivity.this, MainActivity.class);

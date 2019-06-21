@@ -29,6 +29,7 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
 import com.example.myapplication.MyAplication;
 
 public class WebActivity extends AppCompatActivity {
@@ -54,9 +55,9 @@ public class WebActivity extends AppCompatActivity {
     }
 
     public void show() {
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         String url = intent.getStringExtra("url");
-        final int articleId = intent.getIntExtra("articleId",0);
+        final int articleId = intent.getIntExtra("articleId", 0);
 
 
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);//设置js可以直接打开窗口，如window.open()，默认为false
@@ -83,61 +84,47 @@ public class WebActivity extends AppCompatActivity {
         bmb.setBackPressListened(false);
 
 
-
-
-
-
-
-        //        按钮1
+        //        按钮1 喜欢
         SimpleCircleButton.Builder builder1 = new SimpleCircleButton.Builder()
                 .normalImageRes(R.drawable.aa)
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
                         try {
-                            boolean   isSuce = sendHttp(MyAplication.getUSERID(),articleId);
+                            boolean isSuce = sendHttp(MyAplication.getUSERID(), articleId);
                             System.out.println(isSuce);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
 
-                        // When the boom-button corresponding this builder is clicked.
-                        Toast.makeText(WebActivity.this, "喜欢成功", Toast.LENGTH_SHORT).show();
                     }
                 });
         bmb.addBuilder(builder1);
 
-        //        按钮2
+        //        按钮2 搜索文章
         SimpleCircleButton.Builder builder2 = new SimpleCircleButton.Builder()
                 .normalImageRes(R.drawable.aa)
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
-                        try {
-                            boolean   isSuce = sendHttp(4,articleId);
-                            System.out.println(isSuce);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
 
-                        // When the boom-button corresponding this builder is clicked.
-                        Toast.makeText(WebActivity.this, "Clicked " + index, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WebActivity.this,"搜索",Toast.LENGTH_SHORT);
+                        Intent intent1 = new Intent(WebActivity.this, MainActivity.class);
+                        intent1.putExtra("choice","java");
+                        startActivity(intent1);
+
+
                     }
                 });
         bmb.addBuilder(builder2);
 
-        //        按钮3
+        //        按钮3 发现文章
         SimpleCircleButton.Builder builder3 = new SimpleCircleButton.Builder()
                 .normalImageRes(R.drawable.aa)
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
-                        try {
-                            boolean   isSuce = sendHttp(4,articleId);
-                            System.out.println(isSuce);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+
 
                         // When the boom-button corresponding this builder is clicked.
                         Toast.makeText(WebActivity.this, "Clicked " + index, Toast.LENGTH_SHORT).show();
@@ -151,12 +138,7 @@ public class WebActivity extends AppCompatActivity {
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
-                        try {
-                            boolean   isSuce = sendHttp(4,articleId);
-                            System.out.println(isSuce);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+
 
                         // When the boom-button corresponding this builder is clicked.
                         Toast.makeText(WebActivity.this, "Clicked " + index, Toast.LENGTH_SHORT).show();
@@ -170,12 +152,7 @@ public class WebActivity extends AppCompatActivity {
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
-                        try {
-                            boolean   isSuce = sendHttp(4,articleId);
-                            System.out.println(isSuce);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+
 
                         // When the boom-button corresponding this builder is clicked.
                         Toast.makeText(WebActivity.this, "Clicked " + index, Toast.LENGTH_SHORT).show();
@@ -189,12 +166,7 @@ public class WebActivity extends AppCompatActivity {
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
-                        try {
-                            boolean   isSuce = sendHttp(4,articleId);
-                            System.out.println(isSuce);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+
 
                         // When the boom-button corresponding this builder is clicked.
                         Toast.makeText(WebActivity.this, "Clicked " + index, Toast.LENGTH_SHORT).show();
@@ -209,12 +181,7 @@ public class WebActivity extends AppCompatActivity {
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
-                        try {
-                            boolean   isSuce = sendHttp(4,articleId);
-                            System.out.println(isSuce);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+
 
                         // When the boom-button corresponding this builder is clicked.
                         Toast.makeText(WebActivity.this, "Clicked " + index, Toast.LENGTH_SHORT).show();
@@ -228,12 +195,7 @@ public class WebActivity extends AppCompatActivity {
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
-                        try {
-                            boolean   isSuce = sendHttp(4,articleId);
-                            System.out.println(isSuce);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+
 
                         // When the boom-button corresponding this builder is clicked.
                         Toast.makeText(WebActivity.this, "Clicked " + index, Toast.LENGTH_SHORT).show();
@@ -247,12 +209,6 @@ public class WebActivity extends AppCompatActivity {
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
-                        try {
-                            boolean   isSuce = sendHttp(4,articleId);
-                            System.out.println(isSuce);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
 
                         // When the boom-button corresponding this builder is clicked.
                         Toast.makeText(WebActivity.this, "Clicked " + index, Toast.LENGTH_SHORT).show();
@@ -261,29 +217,13 @@ public class WebActivity extends AppCompatActivity {
         bmb.addBuilder(builder9);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        }
-
-
-
+    }
 
 
     boolean isLike = false;
 
 
-    public boolean sendHttp(int uId,int aId) throws InterruptedException {
+    public boolean sendHttp(int uId, int aId) throws InterruptedException {
 
         final int userId = uId;
         final int articleId = aId;
@@ -304,7 +244,7 @@ public class WebActivity extends AppCompatActivity {
                     OkHttpClient client = new OkHttpClient();
 //                            String a = "大数据";
 //                    String path = "http://tishq.cn:5001/articles";
-                    String url = "http://tishq.cn:8401/kgr?userId="+userId+"&articleId="+articleId;
+                    String url = "http://tishq.cn:8401/kgr?userId=" + userId + "&articleId=" + articleId;
                     System.out.println(url);
 
 
@@ -370,7 +310,6 @@ public class WebActivity extends AppCompatActivity {
         return isLike;
 
     }
-
 
 
 }

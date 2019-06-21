@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.Mi
         Intent intent = new Intent(MainActivity.this, WebActivity.class);
         intent.putExtra("url",la.get(position).getUrl());
         intent.putExtra("articleId",la.get(position).getArticleId());
-        MyAplication.setTest(1);
         startActivity(intent);
 
     }
@@ -131,16 +130,6 @@ public class MainActivity extends AppCompatActivity implements ArticleAdapter.Mi
                                 la.add(lat.get(i));
                             }
 
-
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-
-
-                                    Toast.makeText(MainActivity.this, "注册成功！",
-                                            Toast.LENGTH_SHORT).show();
-
-                                }
-                            });
 //                            阻塞子线程
                             latch.countDown();
 

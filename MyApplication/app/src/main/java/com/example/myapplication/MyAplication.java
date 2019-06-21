@@ -6,12 +6,13 @@ public class MyAplication extends Application {
     static int  TEST;
     static int USERID = 1;
 
-    public static int getTest() {
+
+    public static int getTEST() {
         return TEST;
     }
 
-    public static void setTest(int test) {
-        MyAplication.TEST = test;
+    public static void setTEST(int TEST) {
+        MyAplication.TEST = TEST;
     }
 
     public static int getUSERID() {
@@ -21,4 +22,5 @@ public class MyAplication extends Application {
     public static void setUSERID(int USERID) {
         MyAplication.USERID = USERID;
     }
+
 }

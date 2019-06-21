@@ -12,11 +12,10 @@
         android:roundIcon="@drawable/aa"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".test.BMBActivity">
-
-        </activity>
+        <activity android:name=".ArticleRecycleActivity"></activity>
+        <activity android:name=".test.BMBActivity"></activity>
         <activity android:name=".WebActivity" />
-        <activity android:name=".test.RecyclerViewActivity" />
+        <activity android:name=".test.RecyclerViewActivity"></activity>
         <activity android:name=".test.ListViewActivity" />
         <activity android:name=".MoreMegActivity">
             <intent-filter>
