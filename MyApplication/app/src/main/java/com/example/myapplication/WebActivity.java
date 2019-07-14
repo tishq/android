@@ -31,7 +31,7 @@ public class WebActivity extends AppCompatActivity {
     List<Article> la = new ArrayList<>();
 
 
-    private WebView webView;
+        private WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
